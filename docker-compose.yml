@@ -1,0 +1,12 @@
+version: '3'
+services:
+    app:
+        image: gotodo
+        container_name: devenv
+        build:
+            args:
+                - target=dev
+        volumes:
+            - .:/app
+        ports:
+            - '18000:80'
