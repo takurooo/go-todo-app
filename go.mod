@@ -4,6 +4,7 @@ go 1.21
 
 require (
 	github.com/caarlos0/env v3.5.0+incompatible
+	github.com/go-chi/chi v1.5.5
 	github.com/go-playground/validator/v10 v10.17.0
 	github.com/google/go-cmp v0.6.0
 	golang.org/x/sync v0.6.0
