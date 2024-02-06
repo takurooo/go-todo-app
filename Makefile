@@ -2,6 +2,10 @@
 .DEFAULT_GOAL := help
 
 DOCKER_TAG := latest
+
+setup:
+	go install github.com/sqldef/sqldef/cmd/mysqldef@latest
+
 build: ## Build docker image to deploy
 	docker build -t takurooo/gotodo:${DOCKER_TAG} \
 		--target deploy ./
