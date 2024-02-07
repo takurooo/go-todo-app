@@ -3,6 +3,7 @@ module github.com/takurooo/go-todo-app
 go 1.21
 
 require (
+	github.com/DATA-DOG/go-sqlmock v1.5.2
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/go-chi/chi v1.5.5
 	github.com/go-playground/validator/v10 v10.17.0
