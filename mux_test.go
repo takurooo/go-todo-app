@@ -1,16 +1,29 @@
 package main
 
 import (
+	"context"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/takurooo/go-todo-app/config"
 )
 
 func TestNewMux(t *testing.T) {
 	w := httptest.NewRecorder()
 	r := httptest.NewRequest(http.MethodGet, "/health", nil)
-	sut := NewMux()
+	ctx := context.Background()
+	cfg, err := config.New()
+	if err != nil {
+		t.Errorf("failed to create config: %v", err)
+	}
+	sut, cleanup, err := NewMux(ctx, cfg)
+	if err != nil {
+		t.Errorf("failed to create mux: %v", err)
+	}
+	t.Cleanup(cleanup)
+
 	sut.ServeHTTP(w, r)
 	resp := w.Result()
 	t.Cleanup(func() {
