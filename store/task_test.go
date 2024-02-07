@@ -41,7 +41,7 @@ func prepareTasks(ctx context.Context, t *testing.T, con Execer) entity.Tasks {
 	}
 
 	result, err := con.ExecContext(ctx,
-		`INSERT INTO task (user_id, title, status, created, modified)
+		`INSERT INTO task (title, status, created, modified)
 		VALUES
 		(?, ?, ?, ?),
 		(?, ?, ?, ?),
