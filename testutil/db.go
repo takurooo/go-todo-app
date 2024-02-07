@@ -15,6 +15,8 @@ func OpenDBForTest(t *testing.T) *sqlx.DB {
 	t.Helper()
 
 	port := 33306
+	// GitHub Actions always set CI to true
+	// https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
 	if _, defined := os.LookupEnv("CI"); defined {
 		port = 3306
 	}
