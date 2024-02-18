@@ -12,6 +12,7 @@ TODO Web Application with AUTH by Go.
 ```shell
 # 開発環境用のコンテナを起動
 make up
+
 # DBのテーブル作成
 make migrate
 ```
@@ -46,5 +47,5 @@ curl -i -XPOST localhost:18000/tasks -d @./handler/testdata/add_task/ok_req.json
 curl -i -XGET localhost:18000/tasks
 
 # ユーザー登録
-curl -i -XPOST localhost:18000/tasks -d @./handler/testdata/add_task/ok_req.json.golden
+curl -X POST localhost:18000/register -d '{"name": "john2", "password":"test", "role":"user"}'
 ```
