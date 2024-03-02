@@ -40,16 +40,23 @@ make down
 # ヘルスチェック
 curl -XGET localhost:18000/health
 
-# タスク登録
-curl -i -XPOST localhost:18000/tasks -d @./handler/testdata/add_task/ok_req.json.golden
+# ユーザー登録(userロール)
+curl -X POST localhost:18000/register -d '{"name": "normal_user", "password":"test", "role":"user"}'
 
-# タスク一覧取得
-curl -i -XGET localhost:18000/tasks
-
-# ユーザー登録
-curl -X POST localhost:18000/register -d '{"name": "john2", "password":"test", "role":"user"}'
+# ユーザー登録(adminロール)
+curl -X POST localhost:18000/register -d '{"name": "admin_user", "password":"test", "role":"admin"}'
 
 # ログイン
-curl -X POST localhost:18000/login -d '{"user_name": "john2", "password":"test"}'
+# 戻り値のアクセストークンをTODO_TOKENに設定するとタスクの登録や一覧取得が実行できる
+curl -X POST localhost:18000/login -d '{"user_name": "normal_user", "password":"test"}'
+
+# タスク登録
+curl -i -XPOST -H "Authorization: Bearer $TODO_TOKEN" localhost:18000/tasks -d @./handler/testdata/add_task/ok_req.json.golden
+
+# タスク一覧取得
+curl -i -XGET -H "Authorization: Bearer $TODO_TOKEN" localhost:18000/tasks
+
+# 管理者のみアクセス可能なエンドポイント
+curl -i -XGET -H "Authorization: Bearer $TODO_TOKEN" localhost:18000/admin
 
 ```

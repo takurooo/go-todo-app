@@ -116,7 +116,7 @@ func TestJWTer_GetJWT_NG(t *testing.T) {
 	c := clock.FixedClocker{}
 	tok, err := jwt.NewBuilder().
 		JwtID(uuid.New().String()).
-		Issuer(`github.com/budougumi0617/go_todo_app`).
+		Issuer(`github.com/takurooo/go-todo-app`).
 		Subject("access_token").
 		IssuedAt(c.Now()).
 		Expiration(c.Now().Add(30*time.Minute)).
