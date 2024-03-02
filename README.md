@@ -48,4 +48,8 @@ curl -i -XGET localhost:18000/tasks
 
 # ユーザー登録
 curl -X POST localhost:18000/register -d '{"name": "john2", "password":"test", "role":"user"}'
+
+# ログイン
+curl -X POST localhost:18000/login -d '{"user_name": "john2", "password":"test"}'
+
 ```
