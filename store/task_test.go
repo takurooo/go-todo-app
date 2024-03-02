@@ -2,7 +2,6 @@ package store
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/DATA-DOG/go-sqlmock"
@@ -58,7 +57,6 @@ func prepareTasks(ctx context.Context, t *testing.T, con Execer) entity.Tasks {
 	if err != nil {
 		t.Fatal(err)
 	}
-	fmt.Println(id)
 	wants[0].ID = entity.TaskID(id)
 	wants[1].ID = entity.TaskID(id + 1)
 	wants[2].ID = entity.TaskID(id + 2)
