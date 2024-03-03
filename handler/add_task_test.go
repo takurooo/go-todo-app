@@ -59,7 +59,7 @@ func TestAddTask(t *testing.T) {
 				}
 				return nil, errors.New("error from mock")
 			}
-			sut := AddTask{
+			sut := AddTaskHandler{
 				Service:   moq,
 				Validator: validator.New(),
 			}

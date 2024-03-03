@@ -8,12 +8,12 @@ import (
 	"github.com/takurooo/go-todo-app/entity"
 )
 
-type RegisterUser struct {
+type RegisterUserHandler struct {
 	Service   RegisterUserService
 	Validator *validator.Validate
 }
 
-func (ru *RegisterUser) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (ru *RegisterUserHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	var b struct {
 		Name     string `json:"name" validate:"required"`

@@ -9,12 +9,12 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type RegisterUser struct {
+type RegisterUserService struct {
 	DB   store.Execer
 	Repo UserRegister
 }
 
-func (r *RegisterUser) RegisterUser(
+func (r *RegisterUserService) RegisterUser(
 	ctx context.Context, name, password, role string,
 ) (*entity.User, error) {
 	pw, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)

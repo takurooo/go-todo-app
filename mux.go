@@ -39,14 +39,14 @@ func NewMux(ctx context.Context, cfg *config.Config) (http.Handler, func(), erro
 		return nil, cleanup, err
 	}
 
-	ru := &handler.RegisterUser{
-		Service:   &service.RegisterUser{DB: db, Repo: &r},
+	ru := &handler.RegisterUserHandler{
+		Service:   &service.RegisterUserService{DB: db, Repo: &r},
 		Validator: v,
 	}
 	mux.Post("/register", ru.ServeHTTP)
 
-	l := &handler.Login{
-		Service: &service.Login{
+	l := &handler.LoginHandler{
+		Service: &service.LoginService{
 			DB:             db,
 			Repo:           &r,
 			TokenGenerator: jwter,
@@ -55,12 +55,12 @@ func NewMux(ctx context.Context, cfg *config.Config) (http.Handler, func(), erro
 	}
 	mux.Post("/login", l.ServeHTTP)
 
-	at := &handler.AddTask{
-		Service:   &service.AddTask{DB: db, Repo: &r},
+	at := &handler.AddTaskHandler{
+		Service:   &service.AddTaskService{DB: db, Repo: &r},
 		Validator: v,
 	}
-	lt := &handler.ListTask{
-		Service: &service.ListTask{DB: db, Repo: &r},
+	lt := &handler.ListTaskHandler{
+		Service: &service.ListTaskService{DB: db, Repo: &r},
 	}
 	mux.Route("/tasks", func(r chi.Router) {
 		r.Use(handler.AuthMiddleware(jwter))
