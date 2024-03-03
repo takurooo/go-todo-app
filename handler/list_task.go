@@ -6,7 +6,7 @@ import (
 	"github.com/takurooo/go-todo-app/entity"
 )
 
-type ListTask struct {
+type ListTaskHandler struct {
 	Service ListTasksService
 }
 
@@ -16,7 +16,7 @@ type task struct {
 	Status entity.TaskStatus `json:"status"`
 }
 
-func (lt *ListTask) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (lt *ListTaskHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	tasks, err := lt.Service.ListTasks(ctx)
 	if err != nil {

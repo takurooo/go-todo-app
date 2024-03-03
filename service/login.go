@@ -7,13 +7,13 @@ import (
 	"github.com/takurooo/go-todo-app/store"
 )
 
-type Login struct {
+type LoginService struct {
 	DB             store.Queryer
 	Repo           UserGetter
 	TokenGenerator TokenGenerator
 }
 
-func (l *Login) Login(ctx context.Context, name, pw string) (string, error) {
+func (l *LoginService) Login(ctx context.Context, name, pw string) (string, error) {
 	u, err := l.Repo.GetUser(ctx, l.DB, name)
 	if err != nil {
 		return "", fmt.Errorf("failed to list: %w", err)

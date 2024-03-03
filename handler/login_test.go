@@ -70,7 +70,7 @@ func TestLogin_ServeHTTP(t *testing.T) {
 			moq.LoginFunc = func(ctx context.Context, name, pw string) (string, error) {
 				return tt.moq.token, tt.moq.err
 			}
-			sut := Login{
+			sut := LoginHandler{
 				Service:   moq,
 				Validator: validator.New(),
 			}

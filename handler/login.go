@@ -7,12 +7,12 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-type Login struct {
+type LoginHandler struct {
 	Service   LoginService
 	Validator *validator.Validate
 }
 
-func (l *Login) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (l *LoginHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	var body struct {
 		UserName string `json:"user_name" validate:"required"`
